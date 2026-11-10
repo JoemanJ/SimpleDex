@@ -7,6 +7,7 @@
     tools:context=".ui.DetailScreenFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/imageBackIcon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
@@ -47,6 +48,18 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <TextView
+        android:id="@+id/name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/placeholder"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/imagePokemon"
+        />
+
     <ImageView
         android:id="@+id/imageFavoriteIcon"
         android:layout_width="50dp"
@@ -58,7 +71,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/imagePokemon"
+        app:layout_constraintTop_toBottomOf="@+id/name"
         android:layout_marginHorizontal="40dp"
         >
 

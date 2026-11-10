@@ -12,7 +12,9 @@
         tools:layout="@layout/fragment_search_screen" >
         <action
             android:id="@+id/action_searchScreenFragment_to_detailScreenFragment"
-            app:destination="@id/detailScreenFragment" />
+            app:destination="@id/detailScreenFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim" />
     </fragment>
     <fragment
         android:id="@+id/detailScreenFragment"
@@ -72,7 +74,9 @@
         tools:layout="@layout/fragment_favorites_screen" >
         <action
             android:id="@+id/action_favoritesScreenFragment_to_detailScreenFragment"
-            app:destination="@id/detailScreenFragment" />
+            app:destination="@id/detailScreenFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim" />
     </fragment>
     <fragment
         android:id="@+id/listScreenFragment"
@@ -81,6 +85,8 @@
         tools:layout="@layout/fragment_list_screen" >
         <action
             android:id="@+id/action_listScreenFragment_to_detailScreenFragment"
-            app:destination="@id/detailScreenFragment" />
+            app:destination="@id/detailScreenFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim" />
     </fragment>
 </navigation>

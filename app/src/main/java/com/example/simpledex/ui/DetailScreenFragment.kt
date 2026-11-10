@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.simpledex.R
 import com.example.simpledex.databinding.FragmentDetailScreenBinding
@@ -57,15 +58,22 @@ class DetailScreenFragment : Fragment() {
         }
 
         // 2. Populate the stats text views
+        binding.name.text = args.name
         binding.textHpVar.text = args.hp
         binding.textAtkVar.text = args.atk
         binding.textDefVar.text = args.def
         binding.textSpatkVar.text = args.spatk
         binding.textSpdefVar.text = args.spdef
         binding.textSpdVar.text = args.spd
+
         binding.imageFavoriteIcon.setOnClickListener {
             vm.toggleFavoritePokemon()
         }
+        binding.imageBackIcon.setOnClickListener {
+
+            findNavController().popBackStack()
+        }
+
     }
 
     private fun setObservers() {

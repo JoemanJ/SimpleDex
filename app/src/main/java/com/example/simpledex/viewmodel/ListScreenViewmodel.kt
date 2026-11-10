@@ -48,9 +48,8 @@ class ListScreenViewmodel(application: Application): AndroidViewModel(applicatio
             ) {
                 if (response.isSuccessful){
                     val newPokemons = response.body()?.pokemon ?: emptyList()
-                    val currentList = pokemons.value ?: emptyList()
                     pokemons.value = newPokemons
-                    lastGot = 0
+                    lastGot = 15
                 } else {
                     pokemons.value = null
                     Toast.makeText(application, "Não foram encontrados mais pokemons", Toast.LENGTH_LONG).show()
@@ -92,7 +91,7 @@ class ListScreenViewmodel(application: Application): AndroidViewModel(applicatio
                 if (response.isSuccessful){
                     val newPokemons = response.body()?.pokemon ?: emptyList()
                     val currentList = pokemons.value ?: emptyList()
-                    pokemons.value = newPokemons
+                    pokemons.value = currentList + newPokemons
                     lastGot += newPokemons.count()
                 } else {
                     pokemons.value = null
