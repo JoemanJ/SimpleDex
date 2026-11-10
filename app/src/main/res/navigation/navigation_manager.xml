@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation_manager"
+    app:startDestination="@id/searchScreenFragment">
+
+    <fragment
+        android:id="@+id/searchScreenFragment"
+        android:name="com.example.simpledex.ui.SearchScreenFragment"
+        android:label="fragment_search_screen"
+        tools:layout="@layout/fragment_search_screen" >
+        <action
+            android:id="@+id/action_searchScreenFragment_to_detailScreenFragment"
+            app:destination="@id/detailScreenFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailScreenFragment"
+        android:name="com.example.simpledex.ui.DetailScreenFragment"
+        android:label="fragment_detail_screen"
+        tools:layout="@layout/fragment_detail_screen" >
+        <action
+            android:id="@+id/action_detailScreenFragment_to_listScreenFragment"
+            app:destination="@id/listScreenFragment" />
+        <action
+            android:id="@+id/action_detailScreenFragment_to_searchScreenFragment"
+            app:destination="@id/searchScreenFragment" />
+        <action
+            android:id="@+id/action_detailScreenFragment_to_favoritesScreenFragment"
+            app:destination="@id/favoritesScreenFragment" />
+        <argument
+            android:name="name"
+            app:argType="string"
+            app:nullable="true" />
+        <argument
+            android:name="sprite"
+            app:argType="string"
+            app:nullable="true" />
+        <argument
+            android:name="hp"
+            app:argType="string"
+            android:defaultValue="0" />
+        <argument
+            android:name="atk"
+            app:argType="string"
+            android:defaultValue="0" />
+        <argument
+            android:name="def"
+            app:argType="string"
+            android:defaultValue="0" />
+        <argument
+            android:name="spatk"
+            app:argType="string"
+            android:defaultValue="0" />
+        <argument
+            android:name="spdef"
+            app:argType="string"
+            android:defaultValue="0" />
+        <argument
+            android:name="spd"
+            app:argType="string"
+            android:defaultValue="0" />
+        <argument
+            android:name="id"
+            app:argType="integer"
+            android:defaultValue="0" />
+    </fragment>
+    <fragment
+        android:id="@+id/favoritesScreenFragment"
+        android:name="com.example.simpledex.ui.FavoritesScreenFragment"
+        android:label="fragment_favorites_screen"
+        tools:layout="@layout/fragment_favorites_screen" >
+        <action
+            android:id="@+id/action_favoritesScreenFragment_to_detailScreenFragment"
+            app:destination="@id/detailScreenFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/listScreenFragment"
+        android:name="com.example.simpledex.ui.ListScreenFragment"
+        android:label="fragment_list_screen"
+        tools:layout="@layout/fragment_list_screen" >
+        <action
+            android:id="@+id/action_listScreenFragment_to_detailScreenFragment"
+            app:destination="@id/detailScreenFragment" />
+    </fragment>
+</navigation>

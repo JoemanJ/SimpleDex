@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">Simple dex</string>
+    <string name="nome_do_pokemon">Nome do pokemon</string>
+    <string name="buscar">Buscar</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="voltar">Voltar</string>
+    <string name="placeholder">...</string>
+    <string name="hp">HP:</string>
+    <string name="atk">ATK: </string>
+    <string name="def">DEF:</string>
+    <string name="spatk">SPATK:</string>
+    <string name="spdef">SPDEF:</string>
+    <string name="spd">SPD:</string>
+    <string name="carregar_mais">Carregar mais</string>
+</resources>

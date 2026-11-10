@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="powder_blue">#8EB1C7</color>
+    <color name="oxidian_iron">#B02E0C</color>
+    <color name="molten_orange">#EB4511</color>
+    <color name="silver">#C1BFB5</color>
+    <color name="white">#FEFDFF</color>
+    <color name="transparent">#00FFFFFF</color>
+    <color name="status_hp">#ff5959</color>
+    <color name="status_atk">#ff9f5a</color>
+    <color name="status_def">#f9e079</color>
+    <color name="status_spatk">#9db7f4</color>
+    <color name="status_spdef">#a7dc8e</color>
+    <color name="status_spd">#fa93b1</color>
+</resources>

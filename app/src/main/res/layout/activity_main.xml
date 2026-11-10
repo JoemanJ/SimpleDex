@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.MainActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraint_navbar"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginBottom="4dp"
+        android:background="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        >
+
+        <ImageView
+            android:id="@+id/image_search"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/image_list"
+            app:layout_constraintVertical_chainStyle="spread"
+            android:background="@color/transparent"
+            android:src="@drawable/search_alt_2_svgrepo_com"
+            />
+
+        <ImageView
+            android:layout_width="1dp"
+            android:layout_height="40dp"
+            android:id="@+id/spacer1"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:background="@color/black"
+            app:layout_constraintStart_toEndOf="@id/image_search"
+            app:layout_constraintEnd_toStartOf="@id/image_list"
+            />
+
+        <ImageView
+            android:id="@+id/image_list"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/image_search"
+            app:layout_constraintEnd_toStartOf="@+id/image_favorites"
+            android:src="@drawable/pok__ball_icon"
+            android:background="@color/transparent"
+            />
+
+        <ImageView
+            android:layout_width="1dp"
+            android:layout_height="40dp"
+            android:id="@+id/spacer2"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:background="@color/black"
+            app:layout_constraintStart_toEndOf="@id/image_list"
+            app:layout_constraintEnd_toStartOf="@id/image_favorites"
+            />
+
+        <ImageView
+            android:id="@+id/image_favorites"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/image_list"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:background="@color/transparent"
+            android:src="@drawable/star_circle_svgrepo_com"
+            />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.fragment.app.FragmentContainerView
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:id="@+id/fragmentContainerView"
+        android:name="androidx.navigation.fragment.NavHostFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="60dp"
+        app:defaultNavHost="true"
+        app:navGraph="@navigation/navigation_manager"
+
+         />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

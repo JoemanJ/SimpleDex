@@ -1,0 +1,39 @@
+package com.example.simpledex.ui.adapter
+
+import android.view.LayoutInflater
+import android.view.ViewGroup
+import androidx.recyclerview.widget.RecyclerView
+import com.example.simpledex.databinding.PokemonCardBinding
+import com.example.simpledex.repository.database.PokemonModel
+import com.example.simpledex.ui.viewHolder.PokemonCardVH
+
+class FavoritePokemonAdapter (
+    var onItemClick: ((PokemonModel) -> Unit)? = null
+    ): RecyclerView.Adapter<PokemonCardVH>() {
+    private var pokemons: List<PokemonModel> = listOf()
+
+    override fun onCreateViewHolder(
+        parent: ViewGroup,
+        viewType: Int
+    ): PokemonCardVH {
+        val item = PokemonCardBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+
+        return PokemonCardVH(item)
+    }
+
+    override fun onBindViewHolder(
+        holder: PokemonCardVH,
+        position: Int
+    ) {
+        holder.bindVH(pokemons[position], onItemClick)
+    }
+
+    override fun getItemCount(): Int {
+        return pokemons.count()
+    }
+
+    fun updatePokemonList(list: List<PokemonModel>){
+        pokemons = list
+        notifyDataSetChanged()
+    }
+}
