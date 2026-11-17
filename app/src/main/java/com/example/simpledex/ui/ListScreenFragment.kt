@@ -64,13 +64,13 @@ class ListScreenFragment : Fragment() {
                 val action = ListScreenFragmentDirections.actionListScreenFragmentToDetailScreenFragment(
                     id = pokemon.id,
                     name = pokemon.name,
-                    sprite = pokemon.sprites?.frontDefault ?: pokemon.frontDefaultSprite,
-                    hp = pokemon.hp?.toString() ?: "0",
-                    atk = pokemon.atk?.toString() ?: "0",
-                    def = pokemon.def?.toString() ?: "0",
-                    spatk = pokemon.spatk?.toString() ?: "0",
-                    spdef = pokemon.spdef?.toString() ?: "0",
-                    spd = pokemon.spd?.toString() ?: "0"
+                    sprite = pokemon.spriteUrl,
+                    hp = pokemon.hp ?: "0",
+                    atk = pokemon.atk ?: "0",
+                    def = pokemon.def ?: "0",
+                    spatk = pokemon.spatk ?: "0",
+                    spdef = pokemon.spdef ?: "0",
+                    spd = pokemon.spd ?: "0"
                 )
                 findNavController().navigate(action)
                 vm.clearSelectedPokemon()

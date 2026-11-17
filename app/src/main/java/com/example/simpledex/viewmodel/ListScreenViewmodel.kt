@@ -6,6 +6,7 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.application
+import com.example.simpledex.repository.database.PokemonModel
 import com.example.simpledex.repository.pokeapi.Client
 import com.example.simpledex.repository.pokeapi.MultiPokemonSearch
 import com.example.simpledex.repository.pokeapi.PokemonEntity
@@ -22,13 +23,13 @@ class ListScreenViewmodel(application: Application): AndroidViewModel(applicatio
     private var lastGot = 0
 
     private val pokemons = MutableLiveData<List<PokemonEntity>?>()
-    private val selectedPokemon = MutableLiveData<PokemonEntity?>()
+    private val selectedPokemon = MutableLiveData<PokemonModel?>()
 
     fun pokemons(): LiveData<List<PokemonEntity>?>{
         return pokemons;
     }
 
-    fun selectedPokemon(): LiveData<PokemonEntity?>{
+    fun selectedPokemon(): LiveData<PokemonModel?>{
         return selectedPokemon
     }
 
@@ -70,7 +71,7 @@ class ListScreenViewmodel(application: Application): AndroidViewModel(applicatio
                 response: Response<PokemonEntity?>
             ) {
                 if (response.isSuccessful){
-                    selectedPokemon.value = response.body()
+                    selectedPokemon.value = PokemonModel.fromPokemonEntity(response.body())
                 } else {
                     Toast.makeText(application, "Erro ao obter detalhes do pokemon", Toast.LENGTH_LONG).show()
                 }

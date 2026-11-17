@@ -9,6 +9,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.application
 import com.example.simpledex.R
+import com.example.simpledex.repository.database.PokemonModel
 import com.example.simpledex.repository.pokeapi.Client
 import com.example.simpledex.repository.pokeapi.PokemonEntity
 import com.example.simpledex.repository.pokeapi.PokemonService
@@ -21,9 +22,9 @@ class SearchScreenViewmodel(application: Application) : AndroidViewModel(applica
     private val pokemonService: PokemonService =
         Client.createService(PokemonService::class.java, baseUrl = Constants.POKEAPI_BASE_URL)
 
-    private val pokemon = MutableLiveData<PokemonEntity?>()
+    private val pokemon = MutableLiveData<PokemonModel?>()
 
-    fun pokemon(): LiveData<PokemonEntity?>{
+    fun pokemon(): LiveData<PokemonModel?>{
         return pokemon;
     }
 
@@ -38,7 +39,7 @@ class SearchScreenViewmodel(application: Application) : AndroidViewModel(applica
                 response: Response<PokemonEntity?>
             ) {
                 if (response.isSuccessful){
-                    pokemon.value = response.body()
+                    pokemon.value = PokemonModel.fromPokemonEntity(response.body())
                 } else {
                     pokemon.value = null
                     Toast.makeText(application, "Pokemon não encontrado", Toast.LENGTH_LONG).show()

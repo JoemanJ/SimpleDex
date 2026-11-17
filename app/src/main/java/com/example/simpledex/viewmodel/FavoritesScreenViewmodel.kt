@@ -21,7 +21,7 @@ class FavoritesScreenViewmodel(application: Application): AndroidViewModel(appli
     private val pokemonService: PokemonService =
         Client.createService(PokemonService::class.java, baseUrl = Constants.POKEAPI_BASE_URL)
     private val pokemons = MutableLiveData<List<PokemonModel>?>()
-    private val selectedPokemon = MutableLiveData<PokemonEntity?>()
+    private val selectedPokemon = MutableLiveData<PokemonModel?>()
 
     private val DAO: PokemonDao = MyDatabase.getDatabase(application).PokemonDao()
 
@@ -29,7 +29,7 @@ class FavoritesScreenViewmodel(application: Application): AndroidViewModel(appli
         return pokemons
     }
 
-    fun selectedPokemon(): LiveData<PokemonEntity?>{
+    fun selectedPokemon(): LiveData<PokemonModel?>{
         return selectedPokemon
     }
 
@@ -44,7 +44,7 @@ class FavoritesScreenViewmodel(application: Application): AndroidViewModel(appli
                 response: Response<PokemonEntity?>
             ) {
                 if (response.isSuccessful){
-                    selectedPokemon.value = response.body()
+                    selectedPokemon.value = PokemonModel.fromPokemonEntity(response.body())
                 } else {
                     Toast.makeText(application, "Erro ao obter detalhes do pokemon", Toast.LENGTH_LONG).show()
                 }
