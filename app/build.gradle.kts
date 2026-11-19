@@ -2,6 +2,7 @@ plugins {
     alias(libs.plugins.android.application)
     id("androidx.navigation.safeargs.kotlin")
     alias(libs.plugins.ksp)
+    id("com.google.gms.google-services")
 }
 
 android {
@@ -60,4 +61,8 @@ dependencies {
     androidTestImplementation(libs.androidx.junit)
     implementation("androidx.navigation:navigation-fragment:2.10.2")
     implementation("androidx.navigation:navigation-ui-ktx:2.10.2")
+    implementation(platform("com.google.firebase:firebase-bom:33.10.0")) // Não atualizar!
+    implementation("com.google.firebase:firebase-analytics")
+    implementation("com.google.firebase:firebase-auth")
+    implementation("com.google.firebase:firebase-firestore")
 }

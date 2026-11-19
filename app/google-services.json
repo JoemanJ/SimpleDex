@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "212304644801",
+    "project_id": "simpledex-874eb",
+    "storage_bucket": "simpledex-874eb.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:212304644801:android:2eb4ad9829b8915485a240",
+        "android_client_info": {
+          "package_name": "com.example.simpledex"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBX_4JknWj8Jp3Yf5aqiqJdCrQDtw1M1Jc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

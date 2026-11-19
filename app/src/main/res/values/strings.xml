@@ -13,4 +13,12 @@
     <string name="spdef">SPDEF:</string>
     <string name="spd">SPD:</string>
     <string name="carregar_mais">Carregar mais</string>
+    <string name="login">Login</string>
+    <string name="senha">Senha</string>
+    <string name="criar_uma_conta">Criar uma conta</string>
+    <string name="cadastro">Cadastro</string>
+    <string name="nome">Nome</string>
+    <string name="cadastrar">Cadastrar</string>
+    <string name="repita_a_senha">Repita a senha</string>
+    <string name="email">Email</string>
 </resources>
