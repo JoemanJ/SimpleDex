@@ -28,18 +28,23 @@ class LoginFragment : Fragment() {
         vm = ViewModelProvider(this).get(LoginScreenViewModel::class.java)
 
         binding.buttonLogin.setOnClickListener {
-            val success = vm.tryLogin(binding.editEmail.text.toString(),
+            vm.tryLogin(binding.editEmail.text.toString(),
                 binding.editPassword.text.toString())
-
-            if (success) {
-                startActivity(Intent(context, MainActivity::class.java))
-                activity?.finish()
-            }
         }
         binding.textCadastrar.setOnClickListener {
             findNavController().navigate(R.id.action_loginFragment_to_registerFragment)
         }
 
+        setObservers()
         return binding.root
+    }
+
+    fun setObservers(){
+        vm.loginSuccess().observe(viewLifecycleOwner){ success ->
+            if(success){
+                startActivity(Intent(context, MainActivity::class.java))
+                activity?.finish()
+            }
+        }
     }
 }

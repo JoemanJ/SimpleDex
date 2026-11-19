@@ -27,13 +27,24 @@ class RegisterFragment : Fragment() {
         vm = ViewModelProvider(this).get(RegisterScreenViewModel::class.java)
 
         binding.buttonRegister.setOnClickListener {
-            val success = vm.tryRegister(binding.editEmail.text.toString(),
+                vm.tryRegister(binding.editEmail.text.toString(),
                 binding.editPassword1.text.toString(),
                 binding.editPassword2.text.toString())
 
-            if (success) startActivity(Intent(context, MainActivity::class.java))
+//            if (success) startActivity(Intent(context, MainActivity::class.java))
         }
 
+        setObservers()
+
         return binding.root
+    }
+
+    fun setObservers(){
+        vm.registerSuccess().observe(viewLifecycleOwner, {success ->
+            if(success) {
+                startActivity(Intent(context, MainActivity::class.java))
+                requireActivity().finish()
+            }
+        })
     }
 }

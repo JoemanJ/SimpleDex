@@ -2,6 +2,8 @@ package com.example.simpledex.viewmodel
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.application
 import androidx.viewbinding.ViewBinding
@@ -12,12 +14,16 @@ import com.google.firebase.auth.FirebaseAuthUserCollisionException
 class RegisterScreenViewModel(application: Application): AndroidViewModel(application) {
     private val auth = FirebaseAuth.getInstance()
 
-    fun tryRegister(email: String, password1: String, password2: String): Boolean{
-        var success = false
+    private val registerSuccess = MutableLiveData<Boolean>(false)
 
+    fun registerSuccess(): LiveData<Boolean>{
+        return registerSuccess
+    }
+
+    fun tryRegister(email: String, password1: String, password2: String){
         if (password1 != password2){
             Utils.prinToast("Senhas diferentes.", application)
-            return false
+            return
         }
 
         auth.createUserWithEmailAndPassword(email, password1).addOnFailureListener {
@@ -27,9 +33,7 @@ class RegisterScreenViewModel(application: Application): AndroidViewModel(applic
                 Utils.prinToast("Erro ao cadastrar usuário.", application)
             }
         }.addOnSuccessListener {
-            success = true
+            registerSuccess.value = true
         }
-
-        return success
     }
 }

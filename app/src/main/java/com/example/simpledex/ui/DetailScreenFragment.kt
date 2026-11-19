@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
@@ -12,6 +13,7 @@ import com.example.simpledex.R
 import com.example.simpledex.databinding.FragmentDetailScreenBinding
 import com.example.simpledex.repository.database.PokemonModel
 import com.example.simpledex.viewmodel.DetailScreenViewmodel
+import com.google.android.material.snackbar.Snackbar
 
 class DetailScreenFragment : Fragment() {
     private var _binding: FragmentDetailScreenBinding? = null
@@ -67,7 +69,15 @@ class DetailScreenFragment : Fragment() {
         binding.textSpdVar.text = args.spd
 
         binding.imageFavoriteIcon.setOnClickListener {
-            vm.toggleFavoritePokemon()
+            AlertDialog.Builder(requireContext())
+                .setTitle("Confirme")
+                .setMessage("Tem certeza que deseja fazer isso?")
+                .setPositiveButton("Sim", { dialog, bt ->
+                    vm.toggleFavoritePokemon()
+                })
+                .setNegativeButton("Não", {dialog, bt -> {}})
+                .create()
+                .show()
         }
         binding.imageBackIcon.setOnClickListener {
 
@@ -85,8 +95,14 @@ class DetailScreenFragment : Fragment() {
         vm.favorited().observe(viewLifecycleOwner) { favorited ->
             if (favorited){
                 binding.imageFavoriteIcon.setImageResource(R.drawable.star_sharp_filled)
+                val snack = Snackbar.make(binding.root, "Removido dos favoritos", Snackbar.LENGTH_SHORT)
+                snack.setAction("Desfazer", {vm.toggleFavoritePokemon()})
+                snack.show()
             } else {
                 binding.imageFavoriteIcon.setImageResource(R.drawable.star_sharp_empty)
+                val snack = Snackbar.make(binding.root, "Adicionado aos favoritos", Snackbar.LENGTH_SHORT)
+                snack.setAction("Desfazer", {vm.toggleFavoritePokemon()})
+                snack.show()
             }
         }
     }

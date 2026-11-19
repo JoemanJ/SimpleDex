@@ -7,7 +7,10 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.navigation.NavHostController
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.setupWithNavController
 import com.example.simpledex.R
 import com.example.simpledex.databinding.ActivityMainBinding
 
@@ -26,23 +29,26 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             insets
         }
 
-        binding.imageList.setOnClickListener(this)
-        binding.imageSearch.setOnClickListener(this)
-        binding.imageFavorites.setOnClickListener(this)
+//        binding.imageList.setOnClickListener(this)
+//        binding.imageSearch.setOnClickListener(this)
+//        binding.imageFavorites.setOnClickListener(this)
+        val navHostFrag = supportFragmentManager.findFragmentById(R.id.fragmentContainerView) as NavHostFragment
+        val navController = navHostFrag.navController
+        binding.bottomNavMenu.setupWithNavController(navController)
     }
 
     override fun onClick(v: View) {
         val navController = findNavController(R.id.fragmentContainerView)
         when(v.id){
-            binding.imageSearch.id -> {
-                navController.navigate(R.id.searchScreenFragment)
-            }
-            binding.imageList.id -> {
-                navController.navigate(R.id.listScreenFragment)
-            }
-            binding.imageFavorites.id -> {
-                navController.navigate(R.id.favoritesScreenFragment)
-            }
+//            binding.imageSearch.id -> {
+//                navController.navigate(R.id.searchScreenFragment)
+//            }
+//            binding.imageList.id -> {
+//                navController.navigate(R.id.listScreenFragment)
+//            }
+//            binding.imageFavorites.id -> {
+//                navController.navigate(R.id.favoritesScreenFragment)
+//            }
         }
     }
 }

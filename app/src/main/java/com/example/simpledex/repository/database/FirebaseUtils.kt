@@ -42,8 +42,12 @@ class FirebaseUtils {
         }
 
         fun getAllPokemon(db: FirebaseFirestore): List<PokemonModel>{
-            val query = db.collection("pokemons").get()
-            return query.result.toObjects(PokemonModel::class.java)
+            var list = listOf<PokemonModel>()
+            db.collection("pokemons").get().addOnSuccessListener {
+                list = it.toObjects(PokemonModel::class.java)
+            }
+
+            return list
         }
     }
 }

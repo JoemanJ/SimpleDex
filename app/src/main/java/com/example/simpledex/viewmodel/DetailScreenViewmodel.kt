@@ -32,7 +32,7 @@ class DetailScreenViewmodel(application: Application) : AndroidViewModel(applica
         pokemon.value = p
 //        favorited.value = DAO.getPokemonById(pokemon.value?.id!!).count() == 1
         db.collection("pokemons").document(p.id.toString()).get().addOnSuccessListener {
-            favorited.value = true
+            if (it.exists()) favorited.value = true
         }.addOnFailureListener {
             favorited.value = false
         }
@@ -74,12 +74,12 @@ class DetailScreenViewmodel(application: Application) : AndroidViewModel(applica
             if (!isFav) {
 //                DAO.insert(currentPokemon)
                 FirebaseUtils.insertPokemon(pokemon.value!!, db)
-                Toast.makeText(application, "${pokemon.value?.name} adicionado aos favoritos.", Toast.LENGTH_SHORT).show()
+//                Toast.makeText(application, "${pokemon.value?.name} adicionado aos favoritos.", Toast.LENGTH_SHORT).show()
                 favorited.value = true
             } else {
 //                DAO.delete(currentPokemon)
                 FirebaseUtils.removePokemon(pokemon.value?.id.toString(), db)
-                Toast.makeText(application, "${pokemon.value?.name} removido dos favoritos.", Toast.LENGTH_SHORT).show()
+//                Toast.makeText(application, "${pokemon.value?.name} removido dos favoritos.", Toast.LENGTH_SHORT).show()
                 favorited.value = false
             }
         } else {
