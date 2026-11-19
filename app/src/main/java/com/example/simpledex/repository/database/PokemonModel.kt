@@ -1,16 +1,13 @@
 package com.example.simpledex.repository.database
 
-import androidx.room.ColumnInfo
-import androidx.room.Entity
-import androidx.room.PrimaryKey
 import com.example.simpledex.repository.pokeapi.PokemonEntity
+import com.google.firebase.firestore.DocumentId
 
-@Entity(tableName = "pokemon")
 class PokemonModel {
     companion object{
         fun fromPokemonEntity(e: PokemonEntity?): PokemonModel{
             return PokemonModel().apply {
-                id = e?.id ?: 0
+                id = e?.id.toString()
 
                 spriteUrl = e?.sprites?.frontDefault ?: ""
                 name = e?.name ?: ""
@@ -23,31 +20,23 @@ class PokemonModel {
             }
         }
     }
-    @PrimaryKey(autoGenerate = false)
-    @ColumnInfo(name = "id")
-    var id: Int = 0
 
-    @ColumnInfo(name = "spriteUrl")
+    @DocumentId
+    var id: String = ""
+
     var spriteUrl: String = ""
 
-    @ColumnInfo(name = "name")
     var name = ""
 
-    @ColumnInfo(name = "hp")
     var hp: String = ""
 
-    @ColumnInfo(name = "atk")
     var atk: String = ""
 
-    @ColumnInfo(name = "def")
     var def: String = ""
 
-    @ColumnInfo(name = "spatk")
     var spatk: String = ""
 
-    @ColumnInfo(name = "spdef")
     var spdef: String = ""
 
-    @ColumnInfo(name = "spd")
     var spd: String = ""
 }

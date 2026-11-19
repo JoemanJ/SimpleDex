@@ -62,7 +62,7 @@ class ListScreenFragment : Fragment() {
         vm.selectedPokemon().observe(viewLifecycleOwner) { pokemon ->
             if (pokemon != null) {
                 val action = ListScreenFragmentDirections.actionListScreenFragmentToDetailScreenFragment(
-                    id = pokemon.id,
+                    id = pokemon.id.toInt(),
                     name = pokemon.name,
                     sprite = pokemon.spriteUrl,
                     hp = pokemon.hp ?: "0",

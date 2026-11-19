@@ -40,7 +40,7 @@ class SearchScreenFragment : Fragment(R.layout.fragment_search_screen) {
         vm.pokemon().observe(viewLifecycleOwner) { pokemon ->
             if (pokemon != null){
                 val action = SearchScreenFragmentDirections.actionSearchScreenFragmentToDetailScreenFragment(
-                    id = pokemon.id,
+                    id = pokemon.id.toInt(),
                     name = pokemon.name,
                     sprite = pokemon.spriteUrl,
                     hp = pokemon.hp ?: "0",

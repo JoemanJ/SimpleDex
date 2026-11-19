@@ -6,13 +6,13 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.application
-import com.example.simpledex.repository.database.MyDatabase
-import com.example.simpledex.repository.database.PokemonDao
+import com.example.simpledex.repository.database.FirebaseUtils
 import com.example.simpledex.repository.database.PokemonModel
 import com.example.simpledex.repository.pokeapi.Client
 import com.example.simpledex.repository.pokeapi.PokemonEntity
 import com.example.simpledex.repository.pokeapi.PokemonService
 import com.example.simpledex.utils.Constants
+import com.google.firebase.firestore.FirebaseFirestore
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -23,7 +23,8 @@ class FavoritesScreenViewmodel(application: Application): AndroidViewModel(appli
     private val pokemons = MutableLiveData<List<PokemonModel>?>()
     private val selectedPokemon = MutableLiveData<PokemonModel?>()
 
-    private val DAO: PokemonDao = MyDatabase.getDatabase(application).PokemonDao()
+//    private val DAO: PokemonDao = MyDatabase.getDatabase(application).PokemonDao()
+    private val db = FirebaseFirestore.getInstance()
 
     fun pokemons(): LiveData<List<PokemonModel>?>{
         return pokemons
@@ -57,6 +58,7 @@ class FavoritesScreenViewmodel(application: Application): AndroidViewModel(appli
     }
 
     fun getFavorites(){
-        pokemons.value = DAO.getSavedPokemon()
+//        pokemons.value = DAO.getSavedPokemon()
+        FirebaseUtils.getAllPokemon(db)
     }
 }

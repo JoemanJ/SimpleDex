@@ -31,7 +31,10 @@ class LoginFragment : Fragment() {
             val success = vm.tryLogin(binding.editEmail.text.toString(),
                 binding.editPassword.text.toString())
 
-            if (success) startActivity(Intent(context, MainActivity::class.java))
+            if (success) {
+                startActivity(Intent(context, MainActivity::class.java))
+                activity?.finish()
+            }
         }
         binding.textCadastrar.setOnClickListener {
             findNavController().navigate(R.id.action_loginFragment_to_registerFragment)

@@ -31,7 +31,7 @@ class DetailScreenFragment : Fragment() {
         vm = ViewModelProvider(this).get(DetailScreenViewmodel::class.java)
 
         val pokemon = PokemonModel().apply {
-            id = args.id ?: 0
+            id = args.id.toString()
             name = args.name ?: ""
             spriteUrl = args.sprite ?: ""
             hp = args.hp ?: ""

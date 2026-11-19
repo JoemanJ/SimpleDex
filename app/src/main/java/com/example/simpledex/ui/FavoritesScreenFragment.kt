@@ -60,7 +60,7 @@ class FavoritesScreenFragment : Fragment() {
             if (pokemon != null) {
                 val action =
                     FavoritesScreenFragmentDirections.actionFavoritesScreenFragmentToDetailScreenFragment(
-                        id = pokemon.id,
+                        id = pokemon.id.toInt(),
                         name = pokemon.name,
                         sprite = pokemon.spriteUrl,
                         hp = pokemon.hp ?: "0",
