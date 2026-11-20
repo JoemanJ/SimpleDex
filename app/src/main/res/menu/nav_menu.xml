@@ -3,22 +3,22 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
         android:id="@+id/searchScreenFragment"
-        android:title=""
+        android:title="Buscar"
         android:icon="@drawable/search_alt_2_svgrepo_com"
         app:showAsAction="always"
         />
 
     <item
         android:id="@+id/listScreenFragment"
-        android:title=""
-        android:icon="@drawable/search_alt_2_svgrepo_com"
+        android:title="Listar"
+        android:icon="@drawable/pok__ball_icon"
         app:showAsAction="always"
         />
 
     <item
         android:id="@+id/favoritesScreenFragment"
-        android:title=""
-        android:icon="@drawable/search_alt_2_svgrepo_com"
+        android:title="Favoritos"
+        android:icon="@drawable/star_circle_svgrepo_com"
         app:showAsAction="always"
         />
 </menu>

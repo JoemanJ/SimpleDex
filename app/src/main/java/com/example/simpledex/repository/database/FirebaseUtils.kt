@@ -1,13 +1,13 @@
 package com.example.simpledex.repository.database
 
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.coroutines.tasks.await
 
 class FirebaseUtils {
     companion object{
-        fun insertPokemon(p: PokemonModel, db: FirebaseFirestore): Boolean{
+        fun favoritePokemon(p: PokemonModel, db: FirebaseFirestore): Boolean{
             val pokemap = hashMapOf(
-                "id" to p.id.toString(),
                 "name" to p.name,
                 "spriteUrl" to p.spriteUrl,
                 "hp" to p.hp,
@@ -19,7 +19,10 @@ class FirebaseUtils {
             )
 
             var success = false
-            db.collection("pokemons").document(p.id.toString()).set(pokemap)
+            db.collection("favoritos")
+                .document(auth.currentUser?.uid?:"")
+                .collection("pokemons")
+                .document(p.id).set(pokemap)
                 .addOnSuccessListener {
                     success = true
                 }.addOnFailureListener {
@@ -29,25 +32,36 @@ class FirebaseUtils {
             return success
         }
 
-        fun removePokemon(id: String, db: FirebaseFirestore): Boolean{
+        fun unfavoritePokemon(id: String, db: FirebaseFirestore): Boolean{
             var success = false
 
-            db.collection("pokemons").document(id).delete().addOnSuccessListener {
-                success = true
-            }.addOnFailureListener {
-                success = false
-            }
+            db.collection("favoritos")
+                .document(auth.currentUser?.uid ?: "")
+                .collection("pokemons")
+                .document(id)
+                .delete()
+                .addOnSuccessListener {
+                    success = true
+                }.addOnFailureListener {
+                    success = false
+                }
 
             return success
         }
 
-        fun getAllPokemon(db: FirebaseFirestore): List<PokemonModel>{
-            var list = listOf<PokemonModel>()
-            db.collection("pokemons").get().addOnSuccessListener {
-                list = it.toObjects(PokemonModel::class.java)
-            }
-
-            return list
+        fun getFavoritePokemon(db: FirebaseFirestore, onResult: (List<PokemonModel>) -> Unit) {
+            db.collection("favoritos")
+                .document(auth.currentUser?.uid ?: "")
+                .collection("pokemons")
+                .get()
+                .addOnSuccessListener { querySnapshot ->
+                    val list = querySnapshot.toObjects(PokemonModel::class.java)
+                    onResult(list)
+                }
+                .addOnFailureListener {
+                    onResult(emptyList())
+                }
         }
+        private val auth = FirebaseAuth.getInstance()
     }
 }

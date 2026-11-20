@@ -3,7 +3,18 @@ package com.example.simpledex.repository.database
 import com.example.simpledex.repository.pokeapi.PokemonEntity
 import com.google.firebase.firestore.DocumentId
 
-class PokemonModel {
+data class PokemonModel(
+    @DocumentId
+    var id: String = "",
+    var spriteUrl: String = "",
+    var name: String = "",
+    var hp: String = "",
+    var atk: String = "",
+    var def: String = "",
+    var spatk: String = "",
+    var spdef: String = "",
+    var spd: String = "")
+{
     companion object{
         fun fromPokemonEntity(e: PokemonEntity?): PokemonModel{
             return PokemonModel().apply {
@@ -20,23 +31,4 @@ class PokemonModel {
             }
         }
     }
-
-    @DocumentId
-    var id: String = ""
-
-    var spriteUrl: String = ""
-
-    var name = ""
-
-    var hp: String = ""
-
-    var atk: String = ""
-
-    var def: String = ""
-
-    var spatk: String = ""
-
-    var spdef: String = ""
-
-    var spd: String = ""
 }

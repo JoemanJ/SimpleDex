@@ -12,6 +12,7 @@ import com.example.simpledex.repository.pokeapi.Client
 import com.example.simpledex.repository.pokeapi.PokemonEntity
 import com.example.simpledex.repository.pokeapi.PokemonService
 import com.example.simpledex.utils.Constants
+import com.example.simpledex.utils.Utils
 import com.google.firebase.firestore.FirebaseFirestore
 import retrofit2.Call
 import retrofit2.Callback
@@ -59,6 +60,6 @@ class FavoritesScreenViewmodel(application: Application): AndroidViewModel(appli
 
     fun getFavorites(){
 //        pokemons.value = DAO.getSavedPokemon()
-        FirebaseUtils.getAllPokemon(db)
+        val list = FirebaseUtils.getFavoritePokemon(db, {list -> pokemons.value = list})
     }
 }
